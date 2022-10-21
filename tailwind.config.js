@@ -3,6 +3,17 @@ module.exports = {
   content: [],
   purge: [
     './**/*.vue',
+    './composables/**.js'
+  ],
+  safelist:[
+    {
+      pattern:/text-(red|green|yellow|blue)-(100|400)/,
+      variants:['group-hover']
+    },
+    {
+      pattern:/bg-(red|green|yellow|blue)-(100|400)/,
+      variants:['group-hover']
+    }
   ],
   darkMode: 'class',
 

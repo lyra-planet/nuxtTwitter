@@ -17,22 +17,20 @@ const generateRefreshToken = (user) => {
     })
 }
 
-export const decodeRefreshToken = (token) => {
+export const decodeRefreshToken = (token)=>{
     const config = useRuntimeConfig()
-
-    try {
-        return jwt.verify(token, config.jwtRefreshSecret)
-    } catch (error) {
+    try{
+        return jwt.verify(token,config.jwtRefreshSecret)
+    }catch(eroor){
         return null
     }
 }
 
-export const decodeAccessToken = (token) => {
+export const decodeAccessToken = (token)=>{
     const config = useRuntimeConfig()
-
-    try {
-        return jwt.verify(token, config.jwtAccessSecret)
-    } catch (error) {
+    try{
+        return jwt.verify(token,config.jwtAccessSecret)
+    }catch(eroor){
         return null
     }
 }

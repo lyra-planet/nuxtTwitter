@@ -1,10 +1,10 @@
 <template>
   <div :class="{'dark': darkMode}">
     <div class="bg-white dark:bg-dim-900">
-
+      <LoadingPage v-if="isAuthLoading"/> 
 
       <!-- App -->
-      <div v-if="user" class="min-h-full">
+      <div v-else-if="user" class="min-h-full">
       <div class="grid 
       grid-cols-12 
       mx-auto 
@@ -19,9 +19,10 @@
         </div>
       </div>
       <!-- Main -->
-      <main class="col-span-12 md:col-span-8 xl:col-span-6 bg-white-500">
+      <main class=" col-span-12 md:col-span-8 xl:col-span-6 bg-white-500">
        <router-view />
       </main>
+
       <!-- Right -->
       <div class="hidden md:block xl:col-span-4 md:col-span-3">
         <div class="sticky top-0">
@@ -38,7 +39,13 @@
   </div>
 </template>
 <script setup>
+import LoadingPage from "./components/LoadingPage.vue";
 const darkMode = ref(false)
-const {useAuthUser} = useAuth()
-const user =useAuthUser()
+const {useAuthUser,initAuth,useAuthLoading} = useAuth()
+const isAuthLoading = useAuthLoading()
+const user = useAuthUser()
+
+onBeforeMount(() => {
+  initAuth()
+})
 </script>
