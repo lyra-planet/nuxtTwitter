@@ -17,7 +17,7 @@
                 </span>
 
                 <nuxt-link :to="replyToTweetUrl">
-                {{props.tweet.replyTo.author}}</nuxt-link>
+                {{props.tweet.replyTo.author.handle}}</nuxt-link>
             </p>
         </div>
     </div>
@@ -29,7 +29,6 @@ const props = defineProps({
         required:true
     }
 })
-console.log(props.tweet)
 const author = props.tweet.author
 const replyToTweetUrl = computed(()=>`/status/${props.tweet?.replyTo?.id}`)
 </script>

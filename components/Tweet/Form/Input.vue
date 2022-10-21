@@ -20,7 +20,7 @@
         bg-transparent 
         border-0 
         dark: focus:ring-0"
-        placeholder="Whats happening ?"
+        :placeholder="props.placeholder"
           ></textarea>
       </div>
     </div>
@@ -142,6 +142,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  placeholder:{
+    type:String,
+    required:true
+  }
 });
 const handleFormSubmit = () => {
   emit("onSubmit", {

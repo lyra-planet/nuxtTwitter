@@ -10,8 +10,12 @@
         cursor-pointer
         border-b 
         hover:bg-gray-100
-        dark:hover:bg-dim-300" :class="[twitterBorderColor,defaultTransition]" v-for="tweet in props.tweets">
-            <TweetItem  :tweet="tweet" :key="tweet.id"/>
+        dark:hover:bg-dim-300" 
+        :class="[twitterBorderColor,defaultTransition]" 
+        v-for="tweet in props.tweets"
+        @click.native="redirect(tweet)"
+        >
+            <TweetItem  :tweet="tweet" :key="tweet.id" :compact="true"/>
         </div>
     </div>
 </template>
@@ -25,4 +29,7 @@ const props = defineProps({
         required:true
     }
 })
+const redirect=(tweet)=>{
+    navigateTo(`/status/${tweet.id}`)
+}
 </script>

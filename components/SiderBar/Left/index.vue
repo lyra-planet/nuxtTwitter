@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen">
         <div class="p-2 my-2 hover:bg-blue-300 rounded-full w-min
-        dark:hover:bg-white/20 " :class="transition">
+        dark:hover:bg-white/20 " :class="defaultTransition">
         <nuxt-link to="/">
             <div class="w-8 h-8">
             <LogoTwitter/>
@@ -81,7 +81,7 @@
         </template>
     </SiderBarLeftTab>
     <div class="hidden xl:block">
-        <UIButton liquid size="lg">
+        <UIButton liquid size="lg" @on-click="emits('onTweet')">
             <strong>
                 Tweet
             </strong>
@@ -89,7 +89,7 @@
         </UIButton>
     </div>
     <div class="block xl:hidden">
-        <UIButton>
+        <UIButton @on-click="emits('onTweet')">
             <div class="w-6 h-6 font-blod">
                 <PencilAltIcon/>
             </div>
@@ -106,5 +106,5 @@ import {HashtagIcon,BellIcon,InboxIcon,BookmarkIcon,
 DocumentTextIcon,UserIcon,DotsCircleHorizontalIcon,PencilAltIcon
 } from '@heroicons/vue/outline' 
 const {defaultTransition}  = useTailwindConfig()
-const transition = 'transition ease-in-out duration-350'
+const emits = defineEmits(['onTweet'])
 </script>
