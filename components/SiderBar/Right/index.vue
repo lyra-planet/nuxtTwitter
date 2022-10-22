@@ -102,15 +102,15 @@ const handleSearch = ()=>{
 
 const whatsHappeningItems = ref([
     {
-        title:'SpaceX',
+        title:'Lyra-planet',
         count:'18.8k Tweets'
     },
     {
-        title:'#CodingIsFun',
+        title:'#YunyouJun',
         count:'8.8k Tweets'
     },    
     {
-        title:'#artforall',
+        title:'#CodingArt',
         count:'18.8k Tweets'
     }
 ])
