@@ -15,7 +15,9 @@
       <!-- Left -->
       <div class="hidden md:block xs:col-span-1 xl:col-span-2">
         <div class="sticky top-0">
-          <SiderBarLeft @on-tweet="handleOpenTweetModal"/>
+          <SiderBarLeft :user="user" 
+          @on-tweet="handleOpenTweetModal" 
+          @on-logout="handleUserLogout"/>
         </div>
       </div>
       <!-- Main -->
@@ -43,8 +45,12 @@
 </template>
 <script setup>
 import LoadingPage from "./components/LoadingPage.vue";
-const {useAuthUser,initAuth,useAuthLoading} = useAuth()
-const {closePostTweetModal,openPostTweetModal,usePostTweetModal,useReplyTweet}=useTweet()
+const {useAuthUser,initAuth,useAuthLoading,logout} = useAuth()
+const {
+  closePostTweetModal,
+  openPostTweetModal,
+  usePostTweetModal,
+  useReplyTweet}=useTweet()
 const darkMode = ref(false)
 const postTweetModal =  usePostTweetModal()
 const emitter = useEmitter()
@@ -56,6 +62,9 @@ emitter.$on('replyTweet',(tweet)=>{
   openPostTweetModal(tweet)
 })
 
+emitter.$on('toggleDarkMode',()=>{
+ darkMode.value = !darkMode.value
+})
 
 const handleFormSuccess = (tweet)=>{
   closePostTweetModal()
@@ -71,6 +80,9 @@ const handleOpenTweetModal = ()=>{
   openPostTweetModal(null)
 }
 
+const handleUserLogout = ()=>{
+  logout()
+}
 onBeforeMount(() => {
   initAuth()
 })

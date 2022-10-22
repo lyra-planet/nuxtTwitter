@@ -17,8 +17,10 @@
     const loading = ref(false)
     const tweet = ref(null)
     const user =  ref(useAuthUser())
+    const router = useRouter()
+    const route = useRoute()
     const tweetId = ()=>{
-        return useRouter().currentRoute.value.params.id
+        return router.currentRoute.value.params.id
     }
     const getTweet=async()=>{
         loading.value=true
@@ -31,10 +33,6 @@
             loading.value =false
         }
     }
-    watch(()=>useRoute().fullPath,()=>{
-    getTweet()
-},{ immediate: true, deep: true })
-    onBeforeMount(()=>{
-            getTweet()
-    })
+    watch(()=>route.fullPath,()=>getTweet(),{ immediate: true, deep: true })
+    onBeforeMount(()=>getTweet())
 </script>

@@ -56,11 +56,38 @@
                 </div>
             </SiderBarRightPreviewCardItem>
         </SiderBarRightPreviewCard>
+
+        <footer>
+            <ul class="mx-2 my-4 text-xs text-gary-500 dark:text-white">
+                <li class="inline-block mx-2 ">
+                    <a href="#" class=" hover:underline" @click.prevent="handleDarkMode">DarkMode</a>
+                </li>
+                <li class="inline-block mx-2 ">
+                    <a href="#" class=" hover:underline">Privacy Policy</a>
+                </li>
+                <li class="inline-block mx-2 ">
+                    <a href="#" class=" hover:underline">Cookie Policy</a>
+                </li>
+                <li class="inline-block mx-2 ">
+                    <a href="#" class=" hover:underline">Accessability</a>
+                </li>
+                <li class="inline-block mx-2 ">
+                    <a href="#" class=" hover:underline">Ads info</a>
+                </li>
+                <li class="inline-block mx-2 ">
+                    <a href="#" class=" hover:underline">More</a>
+                </li>
+                <li class="inline-block mx-2 ">
+                    © 2022 Twitter , Inc.
+                </li>
+            </ul>
+        </footer>
+
     </div>
 </template>
 <script setup> 
 import {SearchIcon} from '@heroicons/vue/outline'
-
+const emitter = useEmitter()
 const search = ref('')
 
 const handleSearch = ()=>{
@@ -105,4 +132,7 @@ const whoToFollowItems = ref([
     }
 
 ])
+const handleDarkMode = ()=>{
+    emitter.$emit('toggleDarkMode')
+}
 </script>

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
                 },
             },
         },
+        transpile:['@heroicons/vue']
     },
 
     runtimeConfig:{

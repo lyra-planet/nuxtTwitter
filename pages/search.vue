@@ -12,7 +12,11 @@
     const loading = ref(false)
     const searchTweets = ref([])
     const searchQuery = useRouter().currentRoute.value.query.q
-    onBeforeMount(async()=>{
+    const route = useRoute()
+    onBeforeMount(()=>{
+        getTweetsFunc()
+    })
+    const getTweetsFunc = async()=>{
         loading.value=true
         console.log(searchQuery)
         try {
@@ -25,6 +29,6 @@
         }finally{
             loading.value =false
         }
-    })
-
+    }
+    watch(()=>route.fullPath,()=>getTweetsFunc(),{ immediate: true, deep: true })
 </script>

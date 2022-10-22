@@ -1,22 +1,28 @@
 <template>
-    <div class="pt-5 space-y-6">
-        <h2>{{data.username}}</h2>
+    <div class="w-full">
+        <div class="flex justify-center">
+            <div class="w-10 h-10">
+                <LogoTwitter/>
+            </div>
+        </div>
+        <div class="pt-5 space-y-6">
         <UIInput 
         v-model="data.username"
         label="Username" 
         placeholder="@username"
         />
-        <h2>{{data.password}}</h2>
         <UIInput 
         label="Password" 
         placeholder="@password" 
         type="password"
         v-model="data.password"
         />
-        <div>
-            <button @click="handleLogin">Login</button>
-        </div>
-    </div>    
+        <UIButton @click="handleLogin" liquid :disabled="isButtonDisabled">
+            Login
+        </UIButton>
+    </div>   
+    </div>
+ 
 </template>
 <script setup>
 const {login} = useAuth()
@@ -41,5 +47,7 @@ const handleLogin = async ()=>{
     data.loading=false
     }
 }
-
+const isButtonDisabled = computed(()=>{
+    return !data.username || !data.password||data.loading
+})
 </script>

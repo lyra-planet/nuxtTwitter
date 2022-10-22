@@ -17,7 +17,8 @@ export default ()=>{
         return new Promise(async(resolve,reject)=>{
             try {
                 const responese = await useFetchApi('/api/tweets',{
-                    method:'GET'
+                    method:'GET',
+                    params
                 })
                 resolve(responese)
             } catch (error) {
@@ -59,6 +60,7 @@ export default ()=>{
 
         setReplyTo(tweet)
     }
+
     return {
         postTweet,
         getTweets,
